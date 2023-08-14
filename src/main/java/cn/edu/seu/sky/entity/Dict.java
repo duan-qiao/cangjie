@@ -1,5 +1,6 @@
 package cn.edu.seu.sky.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -26,10 +27,12 @@ public class Dict {
     private Integer category;
 
     @TableLogic
-    private Integer valid;
+    private Integer deleted;
 
+    @TableField("create_time")
     private Date createTime;
 
+    @TableField("update_time")
     private Date updateTime;
 
     public Dict(String word) {

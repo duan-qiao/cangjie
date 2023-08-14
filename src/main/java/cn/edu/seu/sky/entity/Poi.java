@@ -1,6 +1,8 @@
 package cn.edu.seu.sky.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -34,7 +36,12 @@ public class Poi {
 
     private Integer adcode;
 
+    @TableLogic
+    private Integer deleted;
+
+    @TableField("create_time")
     private Date createTime;
 
+    @TableField("update_time")
     private Date updateTime;
 }
