@@ -24,10 +24,12 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     @Override
     public void saveOne(String word) {
         LambdaUpdateWrapper<Dict> wrapper = Wrappers.<Dict>lambdaUpdate()
-                .setSql("frequency = frequency + 1")
+                .setSql("freq = freq + 1")
                 .eq(Dict::getWord, word);
         if (!this.update(wrapper)) {
-            this.save(new Dict(word));
+            Dict dict = new Dict();
+            dict.setWord(word);
+            this.save(dict);
         }
     }
 

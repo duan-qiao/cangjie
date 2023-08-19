@@ -3,18 +3,17 @@ package cn.edu.seu.sky.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * @author xiaotian on 2023/8/13
+ * @author xiaotian on 2023/8/19
  */
 @Data
-@TableName("t_dict")
-public class Dict {
+@TableName("t_corpus")
+public class Corpus {
 
     /**
      * 主键id
@@ -23,25 +22,14 @@ public class Dict {
     private Long id;
 
     /**
-     * 分词
+     * 待分词文本
      */
-    private String word;
+    private String sentence;
 
     /**
-     * 词频
+     * 处理状态
      */
-    private Integer freq;
-
-    /**
-     * 分类
-     */
-    private Integer category;
-
-    /**
-     * 删除标识位
-     */
-    @TableLogic
-    private Integer deleted;
+    private Integer status;
 
     /**
      * 创建时间

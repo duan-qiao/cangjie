@@ -26,6 +26,14 @@ public final class BaseResult<T> implements Serializable {
         return ResultCode.SUCCESS.getCode() != code;
     }
 
+    public static <T> BaseResult<T> result(boolean success) {
+        ResultCode code = success ? ResultCode.SUCCESS : ResultCode.FAIL;
+        BaseResult<T> result = new BaseResult<>();
+        result.setCode(code.getCode());
+        result.setMessage(code.getMessage());
+        return result;
+    }
+
     public static <T> BaseResult<T> success(T data) {
         BaseResult<T> result = new BaseResult<>();
         result.setCode(ResultCode.SUCCESS.getCode());

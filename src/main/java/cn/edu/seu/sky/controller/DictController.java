@@ -5,6 +5,7 @@ import cn.edu.seu.sky.entity.Dict;
 import cn.edu.seu.sky.service.DictService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -19,8 +20,8 @@ public class DictController {
     @Resource
     public DictService dictService;
 
-    @GetMapping("queryOne")
-    public BaseResult<Dict> queryOne(String word) {
+    @GetMapping("query")
+    public BaseResult<Dict> query(@RequestParam("w") String word) {
         return BaseResult.success(dictService.queryOne(word));
     }
 }

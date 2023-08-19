@@ -1,6 +1,6 @@
 package cn.edu.seu.sky.base;
 
-import cn.edu.seu.sky.utils.BeanUtils;
+import cn.edu.seu.sky.utils.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Data;
 
@@ -47,7 +47,7 @@ public final class PageResult<T> implements Serializable {
 
     public static <S, T> PageResult<T> of(IPage<S> pageInfo, Supplier<T> supplier) {
         PageResult<T> pageResult = new PageResult<>();
-        pageResult.setList(BeanUtils.copyList(pageInfo.getRecords(), supplier));
+        pageResult.setList(BeanUtil.copyList(pageInfo.getRecords(), supplier));
         pageResult.setPageNum(pageInfo.getCurrent());
         pageResult.setPageSize(pageInfo.getSize());
         pageResult.setPages(pageInfo.getPages());
@@ -66,6 +66,18 @@ public final class PageResult<T> implements Serializable {
         pageResult.setList(data);
         pageResult.setHasPreviousPage(pageNo > 1);
         pageResult.setHasNextPage(pageNo < pageResult.getPages());
+        return pageResult;
+    }
+
+    public static <S, T> PageResult<T> of(PageResult<S> result, List<T> data) {
+        PageResult<T> pageResult = new PageResult<>();
+        pageResult.setList(data);
+        pageResult.setPageNum(result.getPageNum());
+        pageResult.setPageSize(result.getPageSize());
+        pageResult.setPages(result.getPages());
+        pageResult.setTotal(result.getTotal());
+        pageResult.setHasPreviousPage(result.isHasPreviousPage());
+        pageResult.setHasNextPage(result.isHasNextPage());
         return pageResult;
     }
 

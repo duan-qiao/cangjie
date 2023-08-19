@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 /**
  * @author xiaotian on 2022/5/10
  */
-public class BeanUtils {
+public final class BeanUtil {
 
     public static <S, T> T copy(S source, Supplier<T> target) {
         T t = target.get();
