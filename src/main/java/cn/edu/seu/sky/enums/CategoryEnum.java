@@ -33,6 +33,10 @@ public enum CategoryEnum {
      * 名称词
      */
     NAME(5, "名称词"),
+    /**
+     * 品牌名
+     */
+    BRAND(6, "品牌名"),
     ;
 
     private final int value;
