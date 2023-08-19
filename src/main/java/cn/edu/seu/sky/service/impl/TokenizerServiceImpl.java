@@ -44,13 +44,14 @@ public class TokenizerServiceImpl implements TokenizerService {
     @Override
     @Transactional
     public boolean save(List<Tokenization> list) {
+        // 保存分词
         List<String> words = list.stream()
                 .map(Tokenization::getTokens)
                 .flatMap(Collection::stream)
                 .map(Token::getWord)
                 .collect(Collectors.toList());
         dictService.batchSave(words);
-
+        // 更新语料库状态
         List<Long> ids = list.stream().map(Tokenization::getId).collect(Collectors.toList());
         corpusService.updateProcessedByIds(ids);
         return true;
