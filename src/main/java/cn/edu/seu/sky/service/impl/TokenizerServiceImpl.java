@@ -5,7 +5,7 @@ import cn.edu.seu.sky.entity.Corpus;
 import cn.edu.seu.sky.service.DictService;
 import cn.edu.seu.sky.service.CorpusService;
 import cn.edu.seu.sky.service.TokenizerService;
-import cn.edu.seu.sky.utils.JiebaUtil;
+import cn.edu.seu.sky.utils.HanLPUtil;
 import cn.edu.seu.sky.vo.Token;
 import cn.edu.seu.sky.vo.Tokenization;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class TokenizerServiceImpl implements TokenizerService {
             Tokenization tokenization = new Tokenization();
             tokenization.setId(corpus.getId());
             tokenization.setSentence(corpus.getSentence());
-            tokenization.setTokens(JiebaUtil.handle(corpus.getSentence()));
+            tokenization.setTokens(HanLPUtil.handle(corpus.getSentence()));
             return tokenization;
         }).collect(Collectors.toList());
         return PageResult.of(pageResult, results);
