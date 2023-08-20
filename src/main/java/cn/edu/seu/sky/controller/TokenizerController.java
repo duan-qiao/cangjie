@@ -6,8 +6,8 @@ import cn.edu.seu.sky.service.TokenizerService;
 import cn.edu.seu.sky.vo.Tokenization;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -29,7 +29,7 @@ public class TokenizerController {
     }
 
     @PostMapping("save")
-    public BaseResult<Void> save(@RequestParam List<Tokenization> list) {
+    public BaseResult<Void> save(@RequestBody List<Tokenization> list) {
         return BaseResult.result(tokenizerService.save(list));
     }
 }

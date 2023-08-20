@@ -3,6 +3,7 @@ package cn.edu.seu.sky.utils;
 import cn.edu.seu.sky.enums.CategoryEnum;
 import cn.edu.seu.sky.vo.Token;
 import com.hankcs.hanlp.HanLP;
+import com.hankcs.hanlp.dictionary.CustomDictionary;
 import com.hankcs.hanlp.seg.common.Term;
 
 import java.util.List;
@@ -28,5 +29,9 @@ public final class HanLPUtil {
     public static List<Token> handle(String sentence) {
         List<Term> tokens = HanLP.segment(filtration(sentence));
         return tokens.stream().map(x -> new Token(x.word, CategoryEnum.UNKNOWN.getValue())).collect(Collectors.toList());
+    }
+
+    public static void load(List<String> words) {
+        words.forEach(CustomDictionary::add);
     }
 }
